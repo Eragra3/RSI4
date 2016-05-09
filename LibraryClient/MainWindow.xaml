@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"  >
+                <Label FontSize="20">Browse</Label>
+                <ListView Name="PicturesListView" SelectionMode="Single"
+                          SelectionChanged="PicturesListView_OnSelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <!--<Image MaxHeight="20" Source="{Binding FileData}"></Image>-->
+                                <TextBlock FontSize="14" Text="Title: " />
+                                <TextBlock FontSize="14"  Text="{Binding Title}" FontWeight="Bold" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1">
+                <Separator></Separator>
+                <Label FontSize="20">Upload</Label>
+                <TextBox Name="FileToUploadNameTextBox"  IsEnabled="False"
+                         TextWrapping="WrapWithOverflow" MaxLines="2"></TextBox>
+                <Button Margin="0,5,0,0" Click="ChooseFileButtonClick">Select file</Button>
+                <Button Margin="0,5,0,0"  Click="UploadFileButtonClick" IsEnabled="False">Upload</Button>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            
+            <Label Name="PictureTitleLabel"
+                   HorizontalAlignment="Center" FontSize="24">☻ LEL ☺</Label>
+            <Image Name="PictureContentImage"
+                   Stretch="Uniform" StretchDirection="DownOnly"></Image>
+        </StackPanel>
     </Grid>
 </Window>
